@@ -42,6 +42,14 @@ body {
 /* Links */
 .publication-links {
   margin-top: 1rem;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.link-block {
+  margin: 0;
 }
 
 .external-link.button {

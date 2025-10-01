@@ -54,7 +54,7 @@
             <div class="publication-links">
               <!-- GitHub link -->
               <span class="link-block">
-                <a href="https://github.com/SolidLao/MMBench-System"
+                <a href="https://anonymous.4open.science/r/SemBench-VLDB-2026/"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="fab fa-github"></i>
@@ -62,16 +62,26 @@
                   <span>Code</span>
                   </a>
               </span>
-              <!-- Paper link will be added when available -->
-              <!-- <span class="link-block">
-                <a href="paper.pdf"
+              <!-- Paper link -->
+              <span class="link-block">
+                <a href="https://drive.google.com/drive/folders/1RypSI9Teke-qM254PBslulQnUah8iuMc?dmr=1&ec=wgc-drive-globalnav-goto"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="fas fa-file-pdf"></i>
                   </span>
                   <span>Paper</span>
                 </a>
-              </span> -->
+              </span>
+              <!-- Data link -->
+              <span class="link-block">
+                <a href="https://drive.google.com/drive/folders/1pqf8DKFai16MR80Z7pcls5FgBbom-IJt?dmr=1&ec=wgc-drive-globalnav-goto"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-database"></i>
+                  </span>
+                  <span>Data</span>
+                </a>
+              </span>
             </div>
           </div>
         </div>
@@ -329,12 +339,39 @@
                   What types of queries does SemBench target?
                 </div>
                 <div class="faq-answer" style="display: none;">
-                  SemBench targets complex semantic queries that integrate structured data (tables) with unstructured modalities, 
-                  including text, images, and audio. Each scenario includes at least 10 diverse queries that test various aspects 
-                  of multimodal data processing, ranging from simple retrieval to complex analytical tasks that require reasoning 
-                  across multiple data types and sources. Our queries cover various semantic operators, including semantic filtering, 
-                  semantic joining, semantic classification, semantic scoring, and semantic aggregation. Moreover, SemBench can be easily 
+                  SemBench targets complex semantic queries that integrate structured data (tables) with unstructured modalities,
+                  including text, images, and audio. Each scenario includes at least 10 diverse queries that test various aspects
+                  of multimodal data processing, ranging from simple retrieval to complex analytical tasks that require reasoning
+                  across multiple data types and sources. Our queries cover various semantic operators, including semantic filtering,
+                  semantic joining, semantic classification, semantic scoring, and semantic aggregation. Moreover, SemBench can be easily
                   extended to support more scenarios with more semantic operators.
+                </div>
+              </div>
+
+              <div class="faq-item">
+                <div class="faq-question">
+                  Can we contribute to this benchmark?
+                </div>
+                <div class="faq-answer" style="display: none;">
+                  Yes, we welcome contributions and can discuss building SemBench-2.0 together! The modular architecture supports easy extension:
+                  <ul>
+                    <li><strong>Add New Use Cases:</strong> Implement scenario-specific runner and evaluator</li>
+                    <li><strong>Support New Systems:</strong> Create system-specific runner inheriting from GenericRunner</li>
+                    <li><strong>Custom Metrics:</strong> Extend evaluation framework with domain-specific quality measures</li>
+                    <li><strong>Additional Queries:</strong> Add query definitions in natural language and SQL formats</li>
+                  </ul>
+                  We welcome contributions for new scenarios, systems, metrics, and more semantic queries!
+                </div>
+              </div>
+
+              <div class="faq-item">
+                <div class="faq-question">
+                  Can we upload the results of our system?
+                </div>
+                <div class="faq-answer" style="display: none;">
+                  Of course! We understand that every system is under rapid development, which is why we maintain an online leaderboard.
+                  We encourage you to submit your system's results and participate in the benchmark. Please reach out to discuss how to
+                  contribute your results to the leaderboard.
                 </div>
               </div>
             </div>
