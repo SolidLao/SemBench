@@ -2,13 +2,22 @@
 
 SemBench is a systematic benchmark designed to evaluate and compare multi-modal data systems in realistic settings. It includes well-defined use cases that integrate structured data (tables) with unstructured modalities (text, images, audio), enabling the assessment of systems' ability to process complex semantic queries with ground truth validation. These systems are expected to balance multiple objectives—accuracy, cost, and efficiency—especially when handling large-scale datasets. SemBench emphasizes the trade-offs among these dimensions rather than performance in isolation.
 
+## Important Notes to Reviewers
+We use an anonymous repository because the materials are currently private and pending approval from Google. 
+The repository will be made public once approval is granted, which is expected within a few weeks. All submitted materials are supposed to be confidential anyway until accept. Thanks for understanding!
+
+## Materials
+- [Online Leaderboard](https://sembench.ngrok.io/)
+- [Multi-Modal Datasets](https://drive.google.com/drive/folders/1pqf8DKFai16MR80Z7pcls5FgBbom-IJt?usp=sharing)
+- [Extended Paper](https://drive.google.com/drive/folders/1RypSI9Teke-qM254PBslulQnUah8iuMc?usp=sharing)
+
 ## 🌟 Overview
 
 Modern data systems increasingly need to process and reason over multi-modal data - combining traditional relational data with images, audio, and text. SemBench provides a standardized evaluation framework with:
 
 - **5 Real-world Use Cases**: wildlife monitoring, medical diagnosis, sentiment analysis, question anwering, product analysis
 - **Multi-modal Queries**: Complex semantic operations across multi-modal databases: table, text, image, and audio  
-- **System-agnostic Design**: Extensible and already supports LOTUS, Palimpzest, ThalamusDB, CAESURA, BigQuery, Snowflake, DuckDB FlockMTL
+- **System-agnostic Design**: Extensible and already supports LOTUS, Palimpzest, ThalamusDB, CAESURA, BigQuery, DuckDB FlockMTL
 - **Comprehensive Metrics**: Quality (precision/recall/F1, relative error...), cost (money, token consumption), and performance evaluation (execution time)
 - **Rich Visualizations**: Automated generation of performance comparisons
 
@@ -125,6 +134,10 @@ python3 src/run.py --systems lotus --use-cases movie
 # Compare multiple systems
 python3 src/run.py --systems lotus thalamusdb --use-cases movie
 
+# Execute repeated experiments for error bars
+cd scripts
+./repeat_experiment.sh
+
 # Generate performance visualizations
 python3 src/plot.py
 ```
@@ -166,7 +179,7 @@ The modular architecture supports easy extension:
 
 ## 🤝 Contributing
 
-We welcome contributions! Please see our [contribution guidelines](CONTRIBUTING.md) for details on submitting pull requests, reporting issues, and extending the benchmark.
+We welcome contributions for new scenarios, systems, metrics, and more semantic queries! 
 
 ---
 
