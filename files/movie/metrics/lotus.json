@@ -2,7 +2,7 @@
   "Q1": {
     "query_id": "1",
     "status": "success",
-    "execution_time": 51.704960107803345,
+    "execution_time": 41.006309270858765,
     "token_usage": 245648,
     "money_cost": 0.0868944,
     "row_count": 5,
