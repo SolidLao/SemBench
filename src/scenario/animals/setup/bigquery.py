@@ -331,14 +331,16 @@ class BigQueryAnimalsSetup:
         self.bq_client.create_dataset(dataset, exists_ok=True)
 
         # Upload ImageData table with animal images
+        # NOTE: We always use the same table names regardless of scale_factor
+        # Each scale factor will OVERWRITE the previous data in BigQuery
         image_csv_path = os.path.join(actual_data_dir, "image_data.csv")
-        needs_upload = (not self.table_exists("image_data_images") or 
-                       not self.table_exists("image_data_mm") or 
-                       not self.table_exists("image_data_external") or
-                       not self.is_data_synchronized(image_csv_path, "image_data_images"))
-        
+
+        # Always upload when scale_factor data differs from what's currently in BigQuery
+        # We check if the current CSV matches what was last uploaded
+        needs_upload = not self.is_data_synchronized(image_csv_path, "image_data_images")
+
         if needs_upload:
-            print("Uploading/updating ImageData with animal images to BigQuery...")
+            print(f"Uploading/updating ImageData with animal images to BigQuery (SF={scale_factor})...")
             image_schema = [
                 bigquery.SchemaField("Species", "STRING", mode="REQUIRED"),
                 bigquery.SchemaField("ImagePath", "STRING", mode="REQUIRED"),
@@ -346,32 +348,30 @@ class BigQueryAnimalsSetup:
                 bigquery.SchemaField("StationID", "STRING", mode="REQUIRED"),
             ]
             self.upload_images(
-                local_path=image_csv_path, 
-                gcs_folder="animal_images", 
-                path_col="ImagePath", 
+                local_path=image_csv_path,
+                gcs_folder="animal_images",
+                path_col="ImagePath",
                 table_id="image_data_images",
                 schema=image_schema
             )
             self.finalize_image_upload(
-                table_name="image_data_external", 
-                table_name_multimodal="image_data_mm", 
-                image_url_table="image_data_images", 
-                url_col="ImagePath", 
+                table_name="image_data_external",
+                table_name_multimodal="image_data_mm",
+                image_url_table="image_data_images",
+                url_col="ImagePath",
                 bucket=f"gs://{self.gcs_bucket_name}/animal_images/*"
             )
             self.mark_data_synchronized(image_csv_path)
         else:
-            print("ImageData tables exist and are synchronized, skipping upload.")
+            print(f"ImageData tables exist and are synchronized (SF={scale_factor}), skipping upload.")
 
         # Upload AudioData table with animal audio
         audio_csv_path = os.path.join(actual_data_dir, "audio_data.csv")
-        needs_upload = (not self.table_exists("audio_data_files") or 
-                       not self.table_exists("audio_data_mm") or 
-                       not self.table_exists("audio_data_external") or
-                       not self.is_data_synchronized(audio_csv_path, "audio_data_files"))
-        
+
+        needs_upload = not self.is_data_synchronized(audio_csv_path, "audio_data_files")
+
         if needs_upload:
-            print("Uploading/updating AudioData with animal audio to BigQuery...")
+            print(f"Uploading/updating AudioData with animal audio to BigQuery (SF={scale_factor})...")
             audio_schema = [
                 bigquery.SchemaField("Animal", "STRING", mode="REQUIRED"),
                 bigquery.SchemaField("AudioPath", "STRING", mode="REQUIRED"),
@@ -379,19 +379,19 @@ class BigQueryAnimalsSetup:
                 bigquery.SchemaField("StationID", "STRING", mode="REQUIRED"),
             ]
             self.upload_audio(
-                local_path=audio_csv_path, 
-                gcs_folder="animal_audio", 
-                path_col="AudioPath", 
+                local_path=audio_csv_path,
+                gcs_folder="animal_audio",
+                path_col="AudioPath",
                 table_id="audio_data_files",
                 schema=audio_schema
             )
             self.finalize_audio_upload(
-                table_name="audio_data_external", 
-                table_name_multimodal="audio_data_mm", 
-                audio_url_table="audio_data_files", 
-                url_col="AudioPath", 
+                table_name="audio_data_external",
+                table_name_multimodal="audio_data_mm",
+                audio_url_table="audio_data_files",
+                url_col="AudioPath",
                 bucket=f"gs://{self.gcs_bucket_name}/animal_audio/*"
             )
             self.mark_data_synchronized(audio_csv_path)
         else:
-            print("AudioData tables exist and are synchronized, skipping upload.")
+            print(f"AudioData tables exist and are synchronized (SF={scale_factor}), skipping upload.")
