@@ -40,15 +40,6 @@ let scenarioData = {
         'pathPrefix': 'across_system_', // movie uses across_system_ without 's'
         'scaleFactors': [1000, 2000, 4000, 8000, 16000]
     },
-    'medical': {
-        'models': ['2.5flash', '2.5pro', '5mini'],
-        'modelNames': {
-            '2.5flash': 'Gemini 2.5 Flash',
-            '2.5pro': 'Gemini 2.5 Pro',
-            '5mini': 'GPT-5 Mini'
-        },
-        'pathPrefix': 'across_system_' // movie uses across_system_ without 's'
-    },
     'ecomm': {
         'models': ['2.5flash', '2.5flashlite', '2.5pro', '4o', '4omini'],
         'modelNames': {
