@@ -12,7 +12,7 @@ maybe "same type of clothing from the same brand?
 [definition]
 # For systems that accept free-text queries
 natural_language = """
-Find all pairs of products priced at $500 or less where both products
+Find all pairs of products priced at $5 or less where both products
 are of the same category and from the same brand based on their descriptions.
 """
 # Equivalent to the natural language query
