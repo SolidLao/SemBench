@@ -19,7 +19,7 @@ natural_language = """
 Based on product images, find matching outfits consisting of shoes,
 bottomwear, and topwear in Black, Blue, Red, or White,
 where all three items are from the same brand, same color,
-and each is priced at $1000 or less.
+and each is priced at $10 or less.
 """
 # Equivalent to the natural language query
 sql = ""
